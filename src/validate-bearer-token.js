@@ -1,16 +1,15 @@
-const { NODE_ENV } = require('./config')
+const { API_TOKEN } = require('./config')
 const logger = require('./logger')
 
-function errorHandler(error, req, res, next) {
-  let response
-  if (NODE_ENV === 'production') {
-    response = { error: { message: 'server error' } }
-  } else {
-    console.error(error)
-    logger.error(error.message)
-    response = { message: error.message, error }
+function validateBearerToken(req, res, next) {
+  const authToken = req.get('Authorization')
+  logger.error(`Unauthorized request to path: ${req.path}`)
+
+  if (!authToken || authToken.split(' ')[1] !== API_TOKEN) {
+    return res.status(401).json({ error: 'Unauthorized request' })
   }
-  res.status(500).json(response)
+
+  next()
 }
 
-module.exports = errorHandler
+module.exports = validateBearerToken
