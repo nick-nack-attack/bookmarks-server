@@ -1,31 +1,21 @@
-const bookmarks = [{
-    id: '1',
+const uuid = require('uuid/v4')
+
+const bookmarks = [
+  { id: uuid(),
+    title: 'Thinkful',
+    url: 'https://www.thinkful.com',
+    description: 'Think outside the classroom',
+    rating: 5 },
+  { id: uuid(),
     title: 'Google',
-    url: 'http://www.google.com',
-    description: 'World\'s most popular earch engine',
-    rating: '4'
+    url: 'https://www.google.com',
+    description: 'Where we find everything else',
+    rating: 4 },
+  { id: uuid(),
+    title: 'MDN',
+    url: 'https://developer.mozilla.org',
+    description: 'The only place to find web documentation',
+    rating: 5 },
+]
 
-},
-{
-    id: '2',
-    title: 'SITE 2',
-    url: 'http://www.google.com',
-    description: 'World\'s most popular earch engine',
-    rating: '4'
-},
-{
-    id: '3',
-    title: 'SITE 3',
-    url: 'http://www.google.com',
-    description: 'World\'s most popular earch engine',
-    rating: '4'
-},
-{
-    id: '4',
-    title: 'SITE 4',
-    url: 'http://www.google.com',
-    description: 'World\'s most popular earch engine',
-    rating: '4'
-}]
-
-module.exports = { bookmarks };
+module.exports = { bookmarks }
